@@ -1,4 +1,4 @@
-/*! msal v0.1.6 2018-05-21 */
+/*! msal v0.1.6 2018-05-22 */
 
 'use strict';
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1809,17 +1809,20 @@ var UserAgentApplication = /** @class */ (function () {
         window.msal = this;
         var urlHash = window.location.hash;
         var isCallback = this.isCallback(urlHash);
-        if (!this._isAngular) {
-            if (isCallback) {
-                this.handleAuthenticationResponse.call(this, urlHash);
-            }
-            else {
-                var pendingCallback = this._cacheStorage.getItem(Constants_1.Constants.urlHash);
-                if (pendingCallback) {
-                    this.processCallBack(pendingCallback);
-                }
-            }
-        }
+        // ------------
+        // RTI MODIFIED (removed)
+        // ------------
+        // if (!this._isAngular) {
+        //     if (isCallback) {
+        //         this.handleAuthenticationResponse.call(this, urlHash);
+        //     }
+        //     else {
+        //         var pendingCallback = this._cacheStorage.getItem(Constants.urlHash);
+        //         if (pendingCallback) {
+        //             this.processCallBack(pendingCallback);
+        //         }
+        //     }
+        // }
     }
     Object.defineProperty(UserAgentApplication.prototype, "cacheLocation", {
         /*
@@ -2816,6 +2819,9 @@ var UserAgentApplication = /** @class */ (function () {
      * @param {string} [hash=window.location.hash] - Hash fragment of Url.
      * @hidden
      */
+    // ------------
+    // RTI MODIFIED (expose)
+    // ------------
     UserAgentApplication.prototype.handleAuthenticationResponse = function (hash) {
         if (hash == null) {
             hash = window.location.hash;
@@ -3205,7 +3211,7 @@ var UserAgentApplication = /** @class */ (function () {
         }
         else {
             // in angular level, the url for $http interceptor call could be relative url,
-            // if it's relative call, we'll treat it as app backend call.            
+            // if it's relative call, we'll treat it as app backend call.
             return new Array(this.clientId);
         }
         // if not the app's own backend or not a domain listed in the endpoints structure

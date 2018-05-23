@@ -64,6 +64,13 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
+				<h1 id="this-library-has-been-modified-by-rti">This library has been modified by RTI</h1>
+				<p>See &quot;RTI MODIFIED&quot; notes in <code>UserAgentApplication.ts</code>. These changes make this library&#39;s login behavior deterministic.</p>
+				<p>Also see:</p>
+				<ul>
+					<li><a href="https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/257">https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/257</a></li>
+					<li><a href="https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/263">https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/263</a></li>
+				</ul>
 				<h1 id="microsoft-authentication-library-preview-for-javascript-msal-js-">Microsoft Authentication Library Preview for JavaScript (MSAL.js)</h1>
 				<table>
 					<thead>
@@ -81,7 +88,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<p>The MSAL library preview for JavaScript enables your app to authorize enterprise users using Microsoft Azure Active Directory (AAD), Microsoft account users (MSA), users using social identity providers like Facebook, Google, LinkedIn etc. and get access to <a href="https://cloud.microsoft.com">Microsoft Cloud</a> OR  <a href="https://graph.microsoft.io">Microsoft Graph</a>. </p>
+				<p>The MSAL library preview for JavaScript enables your app to authorize enterprise users using Microsoft Azure Active Directory (AAD), Microsoft account users (MSA), users using social identity providers like Facebook, Google, LinkedIn etc. and get access to <a href="https://cloud.microsoft.com">Microsoft Cloud</a> OR  <a href="https://graph.microsoft.io">Microsoft Graph</a>.</p>
 				<p>The identity management services that the library interacts with are <a href="https://azure.microsoft.com/en-us/services/active-directory/">Microsoft Azure Active Directory</a>, <a href="https://azure.microsoft.com/services/active-directory-b2c/">Microsoft Azure B2C</a> and <a href="https://account.microsoft.com">Microsoft Accounts</a>.</p>
 				<p><a href="https://travis-ci.org/AzureAD/microsoft-authentication-library-for-js"><img src="https://travis-ci.org/AzureAD/microsoft-authentication-library-for-js.png?branch=dev" alt="Build Status"></a><a href="https://www.npmjs.com/package/msal"><img src="https://img.shields.io/npm/v/msal.svg?style=flat" alt="npm version"></a><a href="https://nodei.co/npm/msal/"><img src="https://img.shields.io/npm/dm/msal.svg" alt="npm version"></a></p>
 				<h2 id="important-note-about-the-msal-preview">Important Note about the MSAL Preview</h2>
@@ -144,7 +151,7 @@
 				<pre><code>npm <span class="hljs-keyword">install</span> msal
 </code></pre><p>Note that msal.js is built for ES5, therefore enabling support of Internet Explorer 11. If you want to target Internet Explorer, you&#39;ll need to add a reference to promises polyfill. You might want to read more in the <a href="../../wiki">FAQ</a></p>
 				<pre><code class="lang-JavaScript">    &lt;!-- IE support: add promises polyfill before msal.js  --&gt;
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pre"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span> 
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pre"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 </code></pre>
 				<h2 id="build-and-running-tests">Build and running tests</h2>
 				<p>If you want to build the library and run all the unit tests, you can do the following.</p>
@@ -153,7 +160,7 @@
 </code></pre><p>Then use the following command to build the library and run all the unit tests:</p>
 				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
 </code></pre><h2 id="logging">Logging</h2>
-				<p>You can enable logging in MSAL.js by passing a logger object when creating a UserAgentApplication instance as follows: </p>
+				<p>You can enable logging in MSAL.js by passing a logger object when creating a UserAgentApplication instance as follows:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> logger = <span class="hljs-keyword">new</span> Msal.Logger(loggerCallback, { <span class="hljs-attr">level</span>: Msal.LogLevel.Verbose });
 
 <span class="hljs-keyword">var</span> clientApplication = <span class="hljs-keyword">new</span> Msal.UserAgentApplication(clientID, authority, authCallback, { <span class="hljs-attr">logger</span>: logger });
@@ -175,15 +182,15 @@
 					<li><p><a href="../../wiki">FAQ</a> for access to our frequently asked questions</p>
 					</li>
 					<li><p><a href="http://stackoverflow.com/questions/tagged/msal">Stack Overflow</a> using tag MSAL.
-						We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before. </p>
+						We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before.</p>
 					</li>
-					<li><p><a href="../../issues">GitHub Issues</a> for reporting an bug or feature requests </p>
+					<li><p><a href="../../issues">GitHub Issues</a> for reporting an bug or feature requests</p>
 					</li>
 					<li><p><a href="https://feedback.azure.com/forums/169401-azure-active-directory">User Voice page</a> to provide recommendations and/or feedback</p>
 					</li>
 				</ul>
 				<h2 id="contribute">Contribute</h2>
-				<p>We enthusiastically welcome contributions and feedback. You can clone the repo and start contributing now. </p>
+				<p>We enthusiastically welcome contributions and feedback. You can clone the repo and start contributing now.</p>
 				<p>This project has adopted the <a href="https://opensource.microsoft.com/codeofconduct/">Microsoft Open Source Code of Conduct</a>. For more information see the <a href="https://opensource.microsoft.com/codeofconduct/faq/">Code of Conduct FAQ</a> or contact <a href="mailto:opencode@microsoft.com">opencode@microsoft.com</a> with any additional questions or comments.</p>
 				<h2 id="security-library">Security Library</h2>
 				<p>This library controls how users sign-in and access services. We recommend you always take the latest version of our library in your app when possible. We use <a href="http://semver.org">semantic versioning</a> so you can control the risk associated with updating your app. As an example, always downloading the latest minor version number (e.g. x.<em>y</em>.x) ensures you get the latest security and feature enhanements but our API surface remains the same. You can always see the latest version and release notes under the Releases tab of GitHub.</p>

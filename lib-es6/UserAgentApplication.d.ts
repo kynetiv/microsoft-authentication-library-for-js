@@ -91,7 +91,7 @@ export declare class UserAgentApplication {
     private renewToken(scopes, resolve, reject, user, authenticationRequest, extraQueryParameters?);
     private renewIdToken(scopes, resolve, reject, user, authenticationRequest, extraQueryParameters?);
     getUser(): User;
-    private handleAuthenticationResponse(hash);
+    handleAuthenticationResponse(hash: string): void;
     private saveAccessToken(authority, tokenResponse, user, clientInfo, idToken);
     protected saveTokenFromHash(tokenResponse: TokenResponse): void;
     isCallback(hash: string): boolean;

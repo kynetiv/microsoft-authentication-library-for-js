@@ -1,3 +1,13 @@
+# This library has been modified by RTI
+
+From: https://github.com/AzureAD/microsoft-authentication-library-for-js/
+
+See "RTI MODIFIED" notes in `UserAgentApplication.ts`. These changes make this library's login behavior deterministic.
+
+Also see:
+* https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/257
+* https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/263
+
 
 Microsoft Authentication Library Preview for JavaScript (MSAL.js)
 =========================================================
@@ -6,7 +16,7 @@ Microsoft Authentication Library Preview for JavaScript (MSAL.js)
 | --- | --- | --- | --- | --- |
 
 
-The MSAL library preview for JavaScript enables your app to authorize enterprise users using Microsoft Azure Active Directory (AAD), Microsoft account users (MSA), users using social identity providers like Facebook, Google, LinkedIn etc. and get access to [Microsoft Cloud](https://cloud.microsoft.com) OR  [Microsoft Graph](https://graph.microsoft.io). 
+The MSAL library preview for JavaScript enables your app to authorize enterprise users using Microsoft Azure Active Directory (AAD), Microsoft account users (MSA), users using social identity providers like Facebook, Google, LinkedIn etc. and get access to [Microsoft Cloud](https://cloud.microsoft.com) OR  [Microsoft Graph](https://graph.microsoft.io).
 
 The identity management services that the library interacts with are [Microsoft Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/), [Microsoft Azure B2C](https://azure.microsoft.com/services/active-directory-b2c/) and [Microsoft Accounts](https://account.microsoft.com).
 
@@ -27,10 +37,10 @@ This example shows how to acquire a token to read user information from Microsof
             clientID: 'your_client_id',
             graphScopes: ["user.read", "mail.send"]
         };
-		
+
         var logger = new Msal.Logger(loggerCallback, { level: Msal.LogLevel.Verbose, correlationId:'12345' }); // level and correlationId are optional parameters.
 		//Logger has other optional parameters like piiLoggingEnabled which can be assigned as shown aabove. Please refer to the docs to see the full list and their default values.
-		
+
         function loggerCallback(logLevel, message, piiLoggingEnabled) {
             console.log(message);
         }
@@ -79,7 +89,7 @@ Via NPM:
 Note that msal.js is built for ES5, therefore enabling support of Internet Explorer 11. If you want to target Internet Explorer, you'll need to add a reference to promises polyfill. You might want to read more in the [FAQ](../../wiki)
 ```JavaScript
     <!-- IE support: add promises polyfill before msal.js  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js" class="pre"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js" class="pre"></script>
 ```
 
 ## Build and running tests
@@ -89,21 +99,21 @@ If you want to build the library and run all the unit tests, you can do the foll
 First navigate to the root directory of the library and install the dependencies:
 
 	npm install
-	
+
 Then use the following command to build the library and run all the unit tests:
 
 	npm run build
 
 ## Logging
 
-You can enable logging in MSAL.js by passing a logger object when creating a UserAgentApplication instance as follows: 
+You can enable logging in MSAL.js by passing a logger object when creating a UserAgentApplication instance as follows:
 ```javascript
 var logger = new Msal.Logger(loggerCallback, { level: Msal.LogLevel.Verbose });
 
 var clientApplication = new Msal.UserAgentApplication(clientID, authority, authCallback, { logger: logger });
 
 ```
-Implement the `loggerCallback` method depending on how you want to redirect logs. 
+Implement the `loggerCallback` method depending on how you want to redirect logs.
 The supported log levels are: Error, Warning, Info, Verbose
 
 #### Personal Identifiable Information (PII) & Organizational Identifiable Information (OII)
@@ -113,7 +123,7 @@ By default, MSAL.js logging does not capture or log any PII or OII. The library 
 ```javascript
 //PII or OII logging disabled. Default Logger does not capture any PII or OII
 var logger = new Msal.Logger(loggerCallback, { level: Msal.LogLevel.Verbose, piiLoggingEnabled: false });
-    
+
 //PII or OII logging enabled
 var logger = new Msal.Logger(loggerCallback, { level: Msal.LogLevel.Verbose, piiLoggingEnabled: true });
 
@@ -123,15 +133,15 @@ var logger = new Msal.Logger(loggerCallback, { level: Msal.LogLevel.Verbose, pii
 - [FAQ](../../wiki) for access to our frequently asked questions
 
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) using tag MSAL.
-We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before. 
+We highly recommend you ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before.
 
-- [GitHub Issues](../../issues) for reporting an bug or feature requests 
+- [GitHub Issues](../../issues) for reporting an bug or feature requests
 
 - [User Voice page](https://feedback.azure.com/forums/169401-azure-active-directory) to provide recommendations and/or feedback
 
 ## Contribute
 
-We enthusiastically welcome contributions and feedback. You can clone the repo and start contributing now. 
+We enthusiastically welcome contributions and feedback. You can clone the repo and start contributing now.
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 

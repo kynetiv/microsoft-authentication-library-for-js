@@ -268,17 +268,20 @@ export class UserAgentApplication {
     var urlHash = window.location.hash;
     var isCallback = this.isCallback(urlHash);
 
-    if (!this._isAngular) {
-        if (isCallback) {
-            this.handleAuthenticationResponse.call(this, urlHash);
-        }
-        else {
-            var pendingCallback = this._cacheStorage.getItem(Constants.urlHash);
-            if (pendingCallback) {
-                this.processCallBack(pendingCallback);
-            }
-        }
-    }
+    // ------------
+    // RTI MODIFIED (removed)
+    // ------------
+    // if (!this._isAngular) {
+    //     if (isCallback) {
+    //         this.handleAuthenticationResponse.call(this, urlHash);
+    //     }
+    //     else {
+    //         var pendingCallback = this._cacheStorage.getItem(Constants.urlHash);
+    //         if (pendingCallback) {
+    //             this.processCallBack(pendingCallback);
+    //         }
+    //     }
+    // }
   }
 
   /*
@@ -314,7 +317,7 @@ export class UserAgentApplication {
       }
   }
 
-  
+
   /*
    * Initiate the login process by redirecting the user to the STS authorization endpoint.
    * @param {Array.<string>} scopes - Permissions you want included in the access token. Not all scopes are guaranteed to be included in the access token returned.
@@ -345,7 +348,7 @@ export class UserAgentApplication {
     }
 
     this._loginInProgress = true;
-    
+
     this.authorityInstance.ResolveEndpointsAsync()
       .then(() => {
         const authenticationRequest = new AuthenticationRequestParameters(this.authorityInstance, this.clientId, scopes, ResponseTypes.id_token, this._redirectUri);
@@ -413,7 +416,7 @@ export class UserAgentApplication {
       if (!popUpWindow) {
         return;
       }
-    
+
       this._loginInProgress = true;
 
       this.authorityInstance.ResolveEndpointsAsync().then(() => {
@@ -1364,7 +1367,10 @@ protected getCachedTokenInternal(scopes : Array<string> , user: User): CacheResu
    * @param {string} [hash=window.location.hash] - Hash fragment of Url.
    * @hidden
    */
-  private handleAuthenticationResponse(hash: string): void {
+    // ------------
+    // RTI MODIFIED (expose)
+    // ------------
+  public handleAuthenticationResponse(hash: string): void {
     if (hash == null) {
       hash = window.location.hash;
     }
@@ -1390,9 +1396,9 @@ protected getCachedTokenInternal(scopes : Array<string> , user: User): CacheResu
 
     const requestInfo = self.getRequestInfo(hash);//if(window.parent!==window), by using self, window.parent becomes equal to window in getRequestInfo method specifically
     let token: string = null, tokenReceivedCallback: (errorDesc: string, token: string, error: string, tokenType: string) => void = null, tokenType: string, saveToken:boolean = true;
-    
+
     self._logger.info("Returned from redirect url");
-    
+
     if (window.parent !== window && window.parent.msal) {
         tokenReceivedCallback = window.parent.callBackMappedToRenewStates[requestInfo.stateResponse];
     }
@@ -1434,7 +1440,7 @@ protected getCachedTokenInternal(scopes : Array<string> , user: User): CacheResu
 
     var errorDesc = requestInfo.parameters[Constants.errorDescription];
     var error = requestInfo.parameters[Constants.error];
-  
+
     try {
         if (tokenReceivedCallback) {
             tokenReceivedCallback.call(self, errorDesc, token, error, tokenType);
@@ -1534,7 +1540,7 @@ protected getCachedTokenInternal(scopes : Array<string> , user: User): CacheResu
         if (tokenResponse.parameters.hasOwnProperty(Constants.sessionState)) {
             this._cacheStorage.setItem(Constants.msalSessionState, tokenResponse.parameters[Constants.sessionState]);
         }
-        
+
         var idToken: IdToken;
         var clientInfo: string = "";
         if (tokenResponse.parameters.hasOwnProperty(Constants.accessToken)) {
@@ -1751,7 +1757,7 @@ protected getCachedTokenInternal(scopes : Array<string> , user: User): CacheResu
       extractedUri = extractedUri.split('/')[0];
       return extractedUri;
   }
-  
+
   getScopesForEndpoint(endpoint: string) : Array<string> {
       // if user specified list of anonymous endpoints, no need to send token to these endpoints, return null.
       if (this._anonymousEndpoints.length > 0) {
@@ -1781,7 +1787,7 @@ protected getCachedTokenInternal(scopes : Array<string> , user: User): CacheResu
       }
       else {
           // in angular level, the url for $http interceptor call could be relative url,
-          // if it's relative call, we'll treat it as app backend call.            
+          // if it's relative call, we'll treat it as app backend call.
           return new Array<string>(this.clientId);
       }
 
